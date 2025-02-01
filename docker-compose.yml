@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  electric-vehicles-search-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.nextjs
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/app
+    command: pnpm dev
+
+  cypress:
+    build:
+      context: .
+      dockerfile: Dockerfile.cypress
+    depends_on:
+      - electric-vehicles-search-app
+    environment:
+      - CYPRESS_baseUrl=http://nextjs-app:3000
+    profiles:
+      - e2e # This ensures Cypress only runs when explicitly specified
