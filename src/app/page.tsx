@@ -1,6 +1,6 @@
 'use client';
 
-import { useGetCarsQuery } from '@/state-management/slices/carSlice/car.slice';
+import { useGetCarsQuery } from '@/app/state-management/slices/carSlice/car.slice';
 import type { ReactNode } from 'react';
 
 export default function Home(): ReactNode {

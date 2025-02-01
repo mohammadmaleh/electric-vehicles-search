@@ -1,7 +1,7 @@
 import path from 'path';
 import fs from 'fs/promises';
 import { NextResponse } from 'next/server';
-import type { CarsDBResponse } from '../../../types/cars.type';
+import type { CarsDBResponse } from '../../types/cars.type';
 
 export async function GET(): Promise<NextResponse> {
   try {
