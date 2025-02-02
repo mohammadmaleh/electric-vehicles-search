@@ -2,6 +2,7 @@ import type { Car } from '../types/cars.type';
 
 export const carsMock: Car[] = [
   {
+    id: 1,
     brand: 'Tesla',
     model: 'Model S',
     year: 2020,
@@ -44,6 +45,7 @@ export const carsMock: Car[] = [
     ],
   },
   {
+    id: 2,
     brand: 'Nissan',
     model: 'Leaf',
     year: 2019,

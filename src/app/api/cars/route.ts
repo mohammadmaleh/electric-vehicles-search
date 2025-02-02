@@ -11,9 +11,13 @@ export async function GET(): Promise<NextResponse> {
 
     const jsonData: CarsDBResponse[] = JSON.parse(fileData);
 
+    const cars = jsonData.data;
+
+    const count = jsonData.count;
+
     return NextResponse.json({
-      count: jsonData.length,
-      data: jsonData,
+      count,
+      cars,
     });
   } catch (e) {
     console.log(e);

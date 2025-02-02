@@ -1,4 +1,5 @@
 export interface Car {
+  id: number;
   brand: string;
   model: string;
   year: number;
@@ -20,4 +21,9 @@ export interface Car {
 export interface CarsDBResponse {
   count: number;
   data: Car[];
+}
+
+export interface CarApiResponse {
+  count: number;
+  cars: Car[];
 }

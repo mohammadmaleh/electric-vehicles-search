@@ -35,3 +35,18 @@
 //     }
 //   }
 // }
+
+// eslint-disable-next-line @typescript-eslint/no-namespace
+declare namespace Cypress {
+  interface Chainable {
+    /**
+     * Custom command to get elements by data-testid attribute
+     * @example cy.getByTestId('login-button')
+     */
+    getByTestId(testId: string): Chainable<JQuery<HTMLElement>>;
+  }
+}
+
+Cypress.Commands.add('getByTestId', (testId) => {
+  return cy.get(`[data-testid="${testId}"]`);
+});

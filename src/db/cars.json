@@ -2,6 +2,7 @@
   "count": 45,
   "data": [
     {
+      "id": 1,
       "brand": "Tesla",
       "model": "Model S",
       "year": 2020,
@@ -44,6 +45,7 @@
       ]
     },
     {
+      "id": 2,
       "brand": "Nissan",
       "model": "Leaf",
       "year": 2019,
@@ -74,6 +76,7 @@
       ]
     },
     {
+      "id": 3,
       "brand": "BMW",
       "model": "i3",
       "year": 2021,
@@ -115,6 +118,7 @@
       ]
     },
     {
+      "id": 4,
       "brand": "Audi",
       "model": "e-tron",
       "year": 2022,
@@ -157,6 +161,7 @@
       ]
     },
     {
+      "id": 5,
       "brand": "Volkswagen",
       "model": "ID.3",
       "year": 2020,
@@ -199,6 +204,7 @@
       ]
     },
     {
+      "id": 6,
       "brand": "Renault",
       "model": "Zoe",
       "year": 2018,
@@ -241,6 +247,7 @@
       ]
     },
     {
+      "id": 7,
       "brand": "Hyundai",
       "model": "Kona Electric",
       "year": 2021,
@@ -283,6 +290,7 @@
       ]
     },
     {
+      "id": 8,
       "brand": "Kia",
       "model": "e-Niro",
       "year": 2020,
@@ -325,6 +333,7 @@
       ]
     },
     {
+      "id": 9,
       "brand": "Jaguar",
       "model": "I-PACE",
       "year": 2019,
@@ -367,6 +376,7 @@
       ]
     },
     {
+      "id": 10,
       "brand": "Mercedes-Benz",
       "model": "EQC",
       "year": 2021,
@@ -409,6 +419,7 @@
       ]
     },
     {
+      "id": 11,
       "brand": "Tesla",
       "model": "Model 3",
       "year": 2021,
@@ -451,6 +462,7 @@
       ]
     },
     {
+      "id": 12,
       "brand": "Volkswagen",
       "model": "e-Golf",
       "year": 2019,
@@ -487,6 +499,7 @@
       ]
     },
     {
+      "id": 13,
       "brand": "Peugeot",
       "model": "e-208",
       "year": 2020,
@@ -517,6 +530,7 @@
       ]
     },
     {
+      "id": 14,
       "brand": "Opel",
       "model": "Corsa-e",
       "year": 2021,
@@ -552,6 +566,7 @@
       ]
     },
     {
+      "id": 15,
       "brand": "Honda",
       "model": "e",
       "year": 2021,
@@ -594,6 +609,7 @@
       ]
     },
     {
+      "id": 16,
       "brand": "Porsche",
       "model": "Taycan",
       "year": 2020,
@@ -636,6 +652,7 @@
       ]
     },
     {
+      "id": 17,
       "brand": "Tesla",
       "model": "Model X",
       "year": 2019,
@@ -679,6 +696,7 @@
       ]
     },
     {
+      "id": 18,
       "brand": "Fiat",
       "model": "500e",
       "year": 2020,
@@ -709,6 +727,7 @@
       ]
     },
     {
+      "id": 19,
       "brand": "Mazda",
       "model": "MX-30",
       "year": 2021,
@@ -750,6 +769,7 @@
       ]
     },
     {
+      "id": 20,
       "brand": "Mini",
       "model": "Cooper SE",
       "year": 2021,
@@ -780,6 +800,7 @@
       ]
     },
     {
+      "id": 21,
       "brand": "Tesla",
       "model": "Model Y",
       "year": 2021,
@@ -821,6 +842,7 @@
       ]
     },
     {
+      "id": 22,
       "brand": "Ford",
       "model": "Mustang Mach-E",
       "year": 2021,
@@ -863,6 +885,7 @@
       ]
     },
     {
+      "id": 23,
       "brand": "Skoda",
       "model": "Enyaq iV",
       "year": 2021,
@@ -904,6 +927,7 @@
       ]
     },
     {
+      "id": 24,
       "brand": "Citro\u00ebn",
       "model": "\u00eb-C4",
       "year": 2021,
@@ -934,6 +958,7 @@
       ]
     },
     {
+      "id": 25,
       "brand": "Renault",
       "model": "Twingo Z.E.",
       "year": 2020,
@@ -976,6 +1001,7 @@
       ]
     },
     {
+      "id": 26,
       "brand": "Volvo",
       "model": "XC40 Recharge",
       "year": 2021,
@@ -1006,6 +1032,7 @@
       ]
     },
     {
+      "id": 27,
       "brand": "Audi",
       "model": "e-tron GT",
       "year": 2021,
@@ -1048,6 +1075,7 @@
       ]
     },
     {
+      "id": 28,
       "brand": "BMW",
       "model": "iX3",
       "year": 2021,
@@ -1078,6 +1106,7 @@
       ]
     },
     {
+      "id": 29,
       "brand": "Mercedes-Benz",
       "model": "EQA",
       "year": 2021,
@@ -1120,6 +1149,7 @@
       ]
     },
     {
+      "id": 30,
       "brand": "Hyundai",
       "model": "Ioniq Electric",
       "year": 2020,
@@ -1162,6 +1192,7 @@
       ]
     },
     {
+      "id": 31,
       "brand": "Kia",
       "model": "Soul EV",
       "year": 2020,
@@ -1205,6 +1236,7 @@
       ]
     },
     {
+      "id": 32,
       "brand": "Polestar",
       "model": "2",
       "year": 2021,
@@ -1247,6 +1279,7 @@
       ]
     },
     {
+      "id": 33,
       "brand": "Nissan",
       "model": "Ariya",
       "year": 2021,
@@ -1289,6 +1322,7 @@
       ]
     },
     {
+      "id": 34,
       "brand": "Tesla",
       "model": "Model 3",
       "year": 2022,
@@ -1331,6 +1365,7 @@
       ]
     },
     {
+      "id": 35,
       "brand": "Renault",
       "model": "Megane E-Tech",
       "year": 2021,
@@ -1361,6 +1396,7 @@
       ]
     },
     {
+      "id": 36,
       "brand": "Volkswagen",
       "model": "ID.4",
       "year": 2021,
@@ -1403,6 +1439,7 @@
       ]
     },
     {
+      "id": 37,
       "brand": "Audi",
       "model": "Q4 e-tron",
       "year": 2021,
@@ -1444,6 +1481,7 @@
       ]
     },
     {
+      "id": 38,
       "brand": "Opel",
       "model": "Mokka-e",
       "year": 2021,
@@ -1486,6 +1524,7 @@
       ]
     },
     {
+      "id": 39,
       "brand": "BMW",
       "model": "i4",
       "year": 2022,
@@ -1527,6 +1566,7 @@
       ]
     },
     {
+      "id": 40,
       "brand": "Mercedes-Benz",
       "model": "EQB",
       "year": 2021,
@@ -1562,6 +1602,7 @@
       ]
     },
     {
+      "id": 41,
       "brand": "Peugeot",
       "model": "e-2008",
       "year": 2021,
@@ -1597,6 +1638,7 @@
       ]
     },
     {
+      "id": 42,
       "brand": "Fiat",
       "model": "500e 3+1",
       "year": 2021,
@@ -1639,6 +1681,7 @@
       ]
     },
     {
+      "id": 43,
       "brand": "Mazda",
       "model": "MX-30",
       "year": 2020,
@@ -1682,6 +1725,7 @@
       ]
     },
     {
+      "id": 44,
       "brand": "Honda",
       "model": "e Advance",
       "year": 2021,
@@ -1724,6 +1768,7 @@
       ]
     },
     {
+      "id": 45,
       "brand": "Nissan",
       "model": "Leaf e+",
       "year": 2020,
@@ -1765,6 +1810,7 @@
       ]
     },
     {
+      "id": 46,
       "brand": "Kia",
       "model": "EV6",
       "year": 2021,
@@ -1806,6 +1852,7 @@
       ]
     },
     {
+      "id": 47,
       "brand": "Hyundai",
       "model": "Ioniq 5",
       "year": 2021,
@@ -1847,6 +1894,7 @@
       ]
     },
     {
+      "id": 48,
       "brand": "Porsche",
       "model": "Taycan Cross Turismo",
       "year": 2021,
@@ -1877,6 +1925,7 @@
       ]
     },
     {
+      "id": 49,
       "brand": "Tesla",
       "model": "Model S Plaid",
       "year": 2021,
