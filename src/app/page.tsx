@@ -6,6 +6,7 @@ import { useState, type ReactNode } from 'react';
 import type { Car } from './types/cars.type';
 import SearchInput from '@/components/SearchInput/SearchInput';
 import { useRouter, useSearchParams } from 'next/navigation';
+import RangeInput from '@/components/RangeInput/RangeInput';
 
 export default function Home(): ReactNode {
   const searchParams = useSearchParams();
@@ -16,13 +17,27 @@ export default function Home(): ReactNode {
     searchParams.get('search') ?? '',
   );
 
+  const [minPrice, setMinPrice] = useState<number>(
+    Number(searchParams.get('minPrice')) ?? 0,
+  );
+
+  const [maxPrice, setMaxPrice] = useState<number>(() => {
+    const param = searchParams.get('maxPrice');
+
+    return param !== null && param.trim() !== '' ? Number(param) : 99999999;
+  });
+
   const { data, isLoading, error } = useGetCarsQuery({
     search: searchTerm,
+    minPrice: minPrice.toString(),
+    maxPrice: maxPrice.toString(),
   });
 
   const submitSearch = (): void => {
     const params = {
       search: searchTerm,
+      minPrice: minPrice.toString(),
+      maxPrice: maxPrice.toString(),
     };
 
     router.push(`/?${new URLSearchParams(params).toString()}`);
@@ -45,8 +60,23 @@ export default function Home(): ReactNode {
     submitSearch();
   };
 
+  const onPriceRangeChange = (min: number, max: number): void => {
+    setMinPrice(min);
+    setMaxPrice(max);
+    submitSearch();
+  };
+
+  console.log({ minPrice, maxPrice });
+
   return (
     <div>
+      <RangeInput
+        min={minPrice}
+        max={maxPrice}
+        absoluteMin={100}
+        absoluteMax={1000000000}
+        onSubmit={onPriceRangeChange}
+      />
       <SearchInput
         {...{ onSearch, searchTerm }}
         placeholder="Search for a Bran, Model or Location"

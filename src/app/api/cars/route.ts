@@ -8,6 +8,10 @@ export async function GET(request: Request): Promise<NextResponse> {
 
   const search = searchParams.get('search') ?? '';
 
+  const minPrice = Number(searchParams.get('minPrice')) || 0;
+
+  const maxPrice = Number(searchParams.get('maxPrice')) || 999999999;
+
   try {
     const filePath = path.join(process.cwd(), 'src/db', 'cars.json');
 
@@ -26,7 +30,9 @@ export async function GET(request: Request): Promise<NextResponse> {
             .includes(search.toLowerCase())
         : true;
 
-      return matchesSearch;
+      const matchesPrice = car.price >= minPrice && car.price <= maxPrice;
+
+      return matchesSearch && matchesPrice;
     });
 
     return NextResponse.json({
