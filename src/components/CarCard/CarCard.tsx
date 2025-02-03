@@ -1,10 +1,10 @@
 'use client';
 
 import type { ReactNode } from 'react';
-import type { Props } from './carCard.props';
+import type CarCardProps from './carCard.props';
 import Carousel from '../Carousel/Carousel';
 
-const CarCard = ({ car }: Props): ReactNode => {
+const CarCard = ({ car }: CarCardProps): ReactNode => {
   const { images, model, price, range_km, year, location } = car;
 
   return (

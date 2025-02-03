@@ -28,7 +28,6 @@ const eslintConfig = [
         { blankLine: 'always', prev: '*', next: ['const', 'let', 'var'] },
         { blankLine: 'always', prev: '*', next: 'return' },
       ],
-      indent: ['error', 2],
       'comma-dangle': ['error', 'always-multiline'],
       'object-curly-spacing': ['error', 'always'],
 

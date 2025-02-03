@@ -1,5 +1,7 @@
 import type { Car } from '@/app/types/cars.type';
 
-export interface Props {
+interface CarCardProps {
   car: Car;
 }
+
+export default CarCardProps;

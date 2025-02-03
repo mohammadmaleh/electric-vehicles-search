@@ -1,3 +1,5 @@
-export interface Props {
+interface CarouselProps {
   images: string[];
 }
+
+export default CarouselProps;

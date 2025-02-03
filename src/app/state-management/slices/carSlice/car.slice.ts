@@ -5,9 +5,12 @@ export const carsApi = createApi({
   reducerPath: 'carsApi',
   baseQuery: fetchBaseQuery({ baseUrl: '/api' }),
   endpoints: (builder) => ({
-    getCars: builder.query<CarApiResponse, void>({
-      query: () => ({
+    getCars: builder.query<CarApiResponse, { search: string }>({
+      query: ({ search }) => ({
         url: 'cars',
+        params: {
+          search,
+        },
       }),
     }),
   }),

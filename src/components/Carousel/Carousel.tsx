@@ -1,9 +1,9 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Image from 'next/image';
 import { Navigation, Pagination } from 'swiper/modules';
-import type { Props } from './carousel.props';
+import type CarouselProps from './carousel.props';
 
-const Carousel = ({ images }: Props): React.ReactElement => {
+const Carousel = ({ images }: CarouselProps): React.ReactElement => {
   return (
     <div className="relative h-48" data-testid="carousel">
       <Swiper
