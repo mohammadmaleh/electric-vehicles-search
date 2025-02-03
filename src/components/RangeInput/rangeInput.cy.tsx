@@ -1,4 +1,3 @@
-// RangeInput.cy.tsx
 import RangeInput from './RangeInput';
 
 const defaultProps = {

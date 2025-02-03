@@ -27,3 +27,9 @@ export interface CarApiResponse {
   count: number;
   cars: Car[];
 }
+
+export type CarSortValue = 'newest' | 'oldest' | 'price-asc' | 'price-desc';
+export interface CarSortOption {
+  value: CarSortValue;
+  label: string;
+}

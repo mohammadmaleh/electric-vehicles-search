@@ -13,9 +13,10 @@ export const carsApi = createApi({
         maxPrice: string;
         minYear: string;
         maxYear: string;
+        sortBy: string;
       }
     >({
-      query: ({ search, minPrice, maxPrice, minYear, maxYear }) => ({
+      query: ({ search, minPrice, maxPrice, minYear, maxYear, sortBy }) => ({
         url: 'cars',
         params: {
           search,
@@ -23,6 +24,7 @@ export const carsApi = createApi({
           maxPrice,
           minYear,
           maxYear,
+          sortBy,
         },
       }),
     }),

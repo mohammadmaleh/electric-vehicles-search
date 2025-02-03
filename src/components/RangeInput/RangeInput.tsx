@@ -3,7 +3,6 @@ import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
-// Define validation schema using Yup
 const rangeSchema = yup.object().shape({
   min: yup
     .number()
@@ -38,18 +37,12 @@ const RangeInput: React.FC<RangeInputProps> = ({
   submitLabel = 'Apply',
   className = '',
 }) => {
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+  const { control, handleSubmit } = useForm({
     defaultValues: { min, max },
     resolver: yupResolver(rangeSchema),
   });
 
   const onFormSubmit = (data: { min: number; max: number }): void => {
-    console.log({ errors });
-
     onSubmit(data.min, data.max);
   };
 

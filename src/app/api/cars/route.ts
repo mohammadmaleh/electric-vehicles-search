@@ -1,12 +1,13 @@
 import path from 'path';
 import fs from 'fs/promises';
 import { NextResponse } from 'next/server';
-import type { Car, CarsDBResponse } from '../../types/cars.type';
+import type { Car, CarsDBResponse, CarSortValue } from '../../types/cars.type';
+
 import {
   filterAbsoluteMaxPrice,
   filterAbsoluteMinPrice,
   filterAbsoluteMinYear,
-} from '@/app/utils/consts';
+} from '@/app/static/car.consts';
 
 export async function GET(request: Request): Promise<NextResponse> {
   const { searchParams } = new URL(request.url);
@@ -24,6 +25,9 @@ export async function GET(request: Request): Promise<NextResponse> {
   const maxYear =
     Number(searchParams.get('maxYear')) || new Date().getFullYear();
 
+  const sortBy: CarSortValue = (searchParams.get('sortBy') ??
+    'newest') as CarSortValue;
+
   try {
     const filePath = path.join(process.cwd(), 'src/db', 'cars.json');
 
@@ -35,7 +39,7 @@ export async function GET(request: Request): Promise<NextResponse> {
 
     const count = jsonData.count;
 
-    const filteredCars = cars.filter((car: Car) => {
+    let filteredCars = cars.filter((car: Car) => {
       const matchesSearch = search
         ? `${car.brand} ${car.model} ${car.location}`
             .toLowerCase()
@@ -47,6 +51,21 @@ export async function GET(request: Request): Promise<NextResponse> {
       const matchesYear = car.year >= minYear && car.year <= maxYear;
 
       return matchesSearch && matchesPrice && matchesYear;
+    });
+
+    filteredCars = filteredCars.sort((a: Car, b: Car) => {
+      switch (sortBy) {
+        case 'price-asc':
+          return a.price - b.price;
+        case 'price-desc':
+          return b.price - a.price;
+        case 'newest':
+          return b.year - a.year;
+        case 'oldest':
+          return a.year - b.year;
+        default:
+          return 0;
+      }
     });
 
     return NextResponse.json({

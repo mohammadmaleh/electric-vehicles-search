@@ -3,17 +3,19 @@
 import { useGetCarsQuery } from '@/app/state-management/slices/carSlice/car.slice';
 import CarCard from '@/components/CarCard/CarCard';
 import { useState, type ReactNode } from 'react';
-import type { Car } from './types/cars.type';
+import type { Car, CarSortValue } from './types/cars.type';
 import SearchInput from '@/components/SearchInput/SearchInput';
 import { useRouter, useSearchParams } from 'next/navigation';
 import RangeInput from '@/components/RangeInput/RangeInput';
+import { carSortOptions } from './static/car.consts';
 
 import {
   filterAbsoluteMaxPrice,
   filterAbsoluteMaxYear,
   filterAbsoluteMinPrice,
   filterAbsoluteMinYear,
-} from './utils/consts';
+} from './static/car.consts';
+import Select from '@/components/Select/Select';
 
 export default function Home(): ReactNode {
   const searchParams = useSearchParams();
@@ -50,12 +52,17 @@ export default function Home(): ReactNode {
     getInitialNumberValue(searchParams, 'maxYear', filterAbsoluteMaxYear),
   );
 
+  const [currentSort, setCurrentSort] = useState<CarSortValue>(
+    (searchParams.get('sortBy') as CarSortValue) ?? 'newest',
+  );
+
   const { data, isLoading, error } = useGetCarsQuery({
     search: searchTerm,
     minPrice: minPrice.toString(),
     maxPrice: maxPrice.toString(),
     minYear: minYear.toString(),
     maxYear: maxYear.toString(),
+    sortBy: currentSort,
   });
 
   const submitSearch = (): void => {
@@ -65,6 +72,7 @@ export default function Home(): ReactNode {
       maxPrice: maxPrice.toString(),
       minYear: minYear.toString(),
       maxYear: maxYear.toString(),
+      sortBy: currentSort,
     };
 
     router.push(`/?${new URLSearchParams(params).toString()}`);
@@ -99,8 +107,21 @@ export default function Home(): ReactNode {
     submitSearch();
   };
 
+  const onSortChange = (sortValue: CarSortValue): void => {
+    console.log({ sortValue });
+    setCurrentSort(sortValue);
+    submitSearch();
+  };
+
   return (
     <div>
+      <div className="flex justify-center my-8 width-full">
+        <Select
+          options={carSortOptions}
+          currentSort={currentSort}
+          onChange={onSortChange}
+        />
+      </div>
       <RangeInput
         min={minPrice}
         max={maxPrice}
@@ -117,7 +138,7 @@ export default function Home(): ReactNode {
       />
       <SearchInput
         {...{ onSearch, searchTerm }}
-        placeholder="Search for a Bran, Model or Location"
+        placeholder="Search for a Brand, Model or Location"
         autoFocus
         buttonText="Search Cars"
       />

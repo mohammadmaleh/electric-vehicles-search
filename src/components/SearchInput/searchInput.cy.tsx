@@ -1,4 +1,3 @@
-// searchInput.cy.tsx
 import SearchInput from './SearchInput';
 import { sanitizeInput } from '@/app/utils/security.utils';
 
