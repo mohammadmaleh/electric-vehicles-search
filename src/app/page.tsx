@@ -8,29 +8,54 @@ import SearchInput from '@/components/SearchInput/SearchInput';
 import { useRouter, useSearchParams } from 'next/navigation';
 import RangeInput from '@/components/RangeInput/RangeInput';
 
+import {
+  filterAbsoluteMaxPrice,
+  filterAbsoluteMaxYear,
+  filterAbsoluteMinPrice,
+  filterAbsoluteMinYear,
+} from './utils/consts';
+
 export default function Home(): ReactNode {
   const searchParams = useSearchParams();
 
   const router = useRouter();
 
+  const getInitialNumberValue = (
+    searchParams: URLSearchParams,
+    paramName: string,
+    defaultValue: number,
+  ): number => {
+    const param = searchParams.get(paramName);
+
+    return param !== null && param.trim() !== '' ? Number(param) : defaultValue;
+  };
+
   const [searchTerm, setSearchTerm] = useState<string>(
     searchParams.get('search') ?? '',
   );
 
-  const [minPrice, setMinPrice] = useState<number>(
-    Number(searchParams.get('minPrice')) ?? 0,
+  const [minPrice, setMinPrice] = useState<number>(() =>
+    getInitialNumberValue(searchParams, 'minPrice', filterAbsoluteMinPrice),
   );
 
-  const [maxPrice, setMaxPrice] = useState<number>(() => {
-    const param = searchParams.get('maxPrice');
+  const [maxPrice, setMaxPrice] = useState<number>(() =>
+    getInitialNumberValue(searchParams, 'maxPrice', filterAbsoluteMaxPrice),
+  );
 
-    return param !== null && param.trim() !== '' ? Number(param) : 99999999;
-  });
+  const [minYear, setMinYear] = useState<number>(() =>
+    getInitialNumberValue(searchParams, 'minYear', filterAbsoluteMinYear),
+  );
+
+  const [maxYear, setMaxYear] = useState<number>(() =>
+    getInitialNumberValue(searchParams, 'maxYear', filterAbsoluteMaxYear),
+  );
 
   const { data, isLoading, error } = useGetCarsQuery({
     search: searchTerm,
     minPrice: minPrice.toString(),
     maxPrice: maxPrice.toString(),
+    minYear: minYear.toString(),
+    maxYear: maxYear.toString(),
   });
 
   const submitSearch = (): void => {
@@ -38,6 +63,8 @@ export default function Home(): ReactNode {
       search: searchTerm,
       minPrice: minPrice.toString(),
       maxPrice: maxPrice.toString(),
+      minYear: minYear.toString(),
+      maxYear: maxYear.toString(),
     };
 
     router.push(`/?${new URLSearchParams(params).toString()}`);
@@ -66,16 +93,27 @@ export default function Home(): ReactNode {
     submitSearch();
   };
 
-  console.log({ minPrice, maxPrice });
+  const onYearRangeChange = (min: number, max: number): void => {
+    setMinYear(min);
+    setMaxYear(max);
+    submitSearch();
+  };
 
   return (
     <div>
       <RangeInput
         min={minPrice}
         max={maxPrice}
-        absoluteMin={100}
-        absoluteMax={1000000000}
+        absoluteMin={filterAbsoluteMinPrice}
+        absoluteMax={filterAbsoluteMaxPrice}
         onSubmit={onPriceRangeChange}
+      />
+      <RangeInput
+        min={minYear}
+        max={maxYear}
+        absoluteMin={filterAbsoluteMinYear}
+        absoluteMax={filterAbsoluteMaxYear}
+        onSubmit={onYearRangeChange}
       />
       <SearchInput
         {...{ onSearch, searchTerm }}

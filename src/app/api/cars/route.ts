@@ -2,15 +2,27 @@ import path from 'path';
 import fs from 'fs/promises';
 import { NextResponse } from 'next/server';
 import type { Car, CarsDBResponse } from '../../types/cars.type';
+import {
+  filterAbsoluteMaxPrice,
+  filterAbsoluteMinPrice,
+  filterAbsoluteMinYear,
+} from '@/app/utils/consts';
 
 export async function GET(request: Request): Promise<NextResponse> {
   const { searchParams } = new URL(request.url);
 
   const search = searchParams.get('search') ?? '';
 
-  const minPrice = Number(searchParams.get('minPrice')) || 0;
+  const minPrice =
+    Number(searchParams.get('minPrice')) || filterAbsoluteMinPrice;
 
-  const maxPrice = Number(searchParams.get('maxPrice')) || 999999999;
+  const maxPrice =
+    Number(searchParams.get('maxPrice')) || filterAbsoluteMaxPrice;
+
+  const minYear = Number(searchParams.get('minYear')) || filterAbsoluteMinYear;
+
+  const maxYear =
+    Number(searchParams.get('maxYear')) || new Date().getFullYear();
 
   try {
     const filePath = path.join(process.cwd(), 'src/db', 'cars.json');
@@ -32,7 +44,9 @@ export async function GET(request: Request): Promise<NextResponse> {
 
       const matchesPrice = car.price >= minPrice && car.price <= maxPrice;
 
-      return matchesSearch && matchesPrice;
+      const matchesYear = car.year >= minYear && car.year <= maxYear;
+
+      return matchesSearch && matchesPrice && matchesYear;
     });
 
     return NextResponse.json({

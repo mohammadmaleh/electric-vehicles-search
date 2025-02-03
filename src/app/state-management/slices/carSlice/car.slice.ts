@@ -7,14 +7,22 @@ export const carsApi = createApi({
   endpoints: (builder) => ({
     getCars: builder.query<
       CarApiResponse,
-      { search: string; minPrice: string; maxPrice: string }
+      {
+        search: string;
+        minPrice: string;
+        maxPrice: string;
+        minYear: string;
+        maxYear: string;
+      }
     >({
-      query: ({ search, minPrice, maxPrice }) => ({
+      query: ({ search, minPrice, maxPrice, minYear, maxYear }) => ({
         url: 'cars',
         params: {
           search,
           minPrice,
           maxPrice,
+          minYear,
+          maxYear,
         },
       }),
     }),
