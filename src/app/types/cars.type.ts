@@ -26,6 +26,9 @@ export interface CarsDBResponse {
 export interface CarApiResponse {
   count: number;
   cars: Car[];
+  page: number;
+  totalPages: number;
+  totalItems: number;
 }
 
 export type CarSortValue = 'newest' | 'oldest' | 'price-asc' | 'price-desc';

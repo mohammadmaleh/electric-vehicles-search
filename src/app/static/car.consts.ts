@@ -14,3 +14,5 @@ export const carSortOptions: CarSortOption[] = [
   { value: 'price-asc', label: 'Price: Low to High' },
   { value: 'price-desc', label: 'Price: High to Low' },
 ];
+
+export const carPageLimit = 10;

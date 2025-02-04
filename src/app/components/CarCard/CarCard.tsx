@@ -1,15 +1,15 @@
 'use client';
 
-import type { ReactNode } from 'react';
 import type CarCardProps from './carCard.props';
 import Carousel from '../Carousel/Carousel';
+import { MapPinIcon } from '@heroicons/react/24/solid';
 
-const CarCard = ({ car }: CarCardProps): ReactNode => {
+const CarCard: React.FC<CarCardProps> = ({ car }) => {
   const { images, model, price, range_km, year, location } = car;
 
   return (
     <div
-      className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300"
+      className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 max-h-96"
       data-testid="car-card"
     >
       <Carousel images={images} />
@@ -26,9 +26,9 @@ const CarCard = ({ car }: CarCardProps): ReactNode => {
             className="flex items-center text-gray-600"
             data-testid="car-price"
           >
-            <span className="inline-block w-20">Price:</span>
-            <span className="font-medium text-blue-600">
-              ${price.toLocaleString()}
+            <span className="inline-block w-20 text-grey-700 ">Price:</span>
+            <span className="font-medium text-green-600">
+              {price.toLocaleString()} €
             </span>
           </p>
           <p
@@ -43,6 +43,7 @@ const CarCard = ({ car }: CarCardProps): ReactNode => {
             data-testid="car-location"
           >
             <span className="inline-block w-20">Location:</span>
+            <MapPinIcon className="w-4 h-4 mr-1" />
             <span className="flex items-center">{location}</span>
           </p>
         </div>

@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { Navigation, Pagination } from 'swiper/modules';
 import type CarouselProps from './carousel.props';
 
-const Carousel = ({ images }: CarouselProps): React.ReactElement => {
+const Carousel: React.FC<CarouselProps> = ({ images }) => {
   return (
     <div className="relative h-48" data-testid="carousel">
       <Swiper

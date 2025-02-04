@@ -1,9 +1,15 @@
 import path from 'path';
 import fs from 'fs/promises';
 import { NextResponse } from 'next/server';
-import type { Car, CarsDBResponse, CarSortValue } from '../../types/cars.type';
+import type {
+  Car,
+  CarApiResponse,
+  CarsDBResponse,
+  CarSortValue,
+} from '../../types/cars.type';
 
 import {
+  carPageLimit,
   filterAbsoluteMaxPrice,
   filterAbsoluteMinPrice,
   filterAbsoluteMinYear,
@@ -11,6 +17,8 @@ import {
 
 export async function GET(request: Request): Promise<NextResponse> {
   const { searchParams } = new URL(request.url);
+
+  const page = Number(searchParams.get('page')) || 1;
 
   const search = searchParams.get('search') ?? '';
 
@@ -36,8 +44,6 @@ export async function GET(request: Request): Promise<NextResponse> {
     const jsonData: CarsDBResponse = JSON.parse(fileData);
 
     const cars = jsonData.data;
-
-    const count = jsonData.count;
 
     let filteredCars = cars.filter((car: Car) => {
       const matchesSearch = search
@@ -68,10 +74,23 @@ export async function GET(request: Request): Promise<NextResponse> {
       }
     });
 
-    return NextResponse.json({
-      count,
-      cars: filteredCars,
-    });
+    const startIndex = (page - 1) * carPageLimit;
+
+    const endIndex = startIndex + carPageLimit;
+
+    const paginatedFilteredCars = filteredCars.slice(startIndex, endIndex);
+
+    const filteredCarsCount = filteredCars.length;
+
+    const response: CarApiResponse = {
+      count: filteredCarsCount,
+      page,
+      totalPages: Math.ceil(filteredCarsCount / carPageLimit),
+      cars: paginatedFilteredCars,
+      totalItems: filteredCarsCount,
+    };
+
+    return NextResponse.json(response);
   } catch (e) {
     console.log(e);
 

@@ -29,7 +29,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
   };
 
   return (
-    <form onSubmit={handleSubmit} className={'flex gap-2 max-w-md mx-auto $'}>
+    <form onSubmit={handleSubmit} className={'flex  gap-2 max-w-md mx-auto $'}>
       <input
         data-testid="search-input"
         type="text"
@@ -37,14 +37,12 @@ const SearchInput: React.FC<SearchInputProps> = ({
         ref={inputRef}
         onChange={(e) => setSearch(e.target.value)}
         placeholder={placeholder}
-        aria-label="Search"
-        className="flex-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200"
+        className="flex-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-grey-500 focus:border--500 text-black"
       />
       <button
         data-testid="search-button"
         type="submit"
-        className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-colors duration-200"
-        aria-label="Submit search"
+        className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2  text-xs"
       >
         {buttonText}
       </button>

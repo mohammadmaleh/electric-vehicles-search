@@ -23,7 +23,7 @@ const Select = <T extends string>({
         data-testid="sort-button"
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="inline-flex items-center justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        className="inline-flex items-center justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
         aria-haspopup="true"
         aria-expanded={isOpen}
       >
@@ -46,7 +46,7 @@ const Select = <T extends string>({
                 onClick={() => handleSelect(option.value)}
                 className={`flex items-center w-full text-left px-4 py-2 text-sm ${
                   option.value === currentSort
-                    ? 'bg-indigo-100 text-indigo-700'
+                    ? 'bg-green-100 text-green-700'
                     : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
                 }`}
                 role="menuitem"

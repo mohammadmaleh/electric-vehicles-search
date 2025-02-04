@@ -11,7 +11,18 @@ const rangeSchema = yup.object().shape({
   max: yup
     .number()
     .min(0, 'Maximum value cannot be negative')
-    .required('Maximum value is required'),
+    .required('Maximum value is required')
+    .test(
+      'is-greater-or-equal',
+      'Maximum value must be greater than or equal to minimum',
+      function (value) {
+        const min = this.parent.min;
+
+        return typeof min === 'number' && typeof value === 'number'
+          ? value >= min
+          : true;
+      },
+    ),
 });
 
 type RangeInputProps = {
@@ -35,7 +46,6 @@ const RangeInput: React.FC<RangeInputProps> = ({
   minLabel = 'Minimum',
   maxLabel = 'Maximum',
   submitLabel = 'Apply',
-  className = '',
 }) => {
   const { control, handleSubmit } = useForm({
     defaultValues: { min, max },
@@ -47,7 +57,7 @@ const RangeInput: React.FC<RangeInputProps> = ({
   };
 
   return (
-    <div className={`space-y-6 ${className}`}>
+    <div className="my-2">
       <form onSubmit={handleSubmit(onFormSubmit)} className="space-y-4">
         <div className="flex gap-4">
           <div className="flex-1">
@@ -64,7 +74,7 @@ const RangeInput: React.FC<RangeInputProps> = ({
                   type="number"
                   min={absoluteMin}
                   max={absoluteMax}
-                  className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  className="block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm text-gray-700"
                 />
               )}
             />
@@ -84,7 +94,7 @@ const RangeInput: React.FC<RangeInputProps> = ({
                   type="number"
                   min={absoluteMin}
                   max={absoluteMax}
-                  className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  className="w-full rounded-md border-red-500 shadow-sm  text-gray-600 "
                 />
               )}
             />
@@ -94,7 +104,7 @@ const RangeInput: React.FC<RangeInputProps> = ({
         <button
           data-testid="range-input-submit"
           type="submit"
-          className="w-full inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          className="w-full inline-flex justify-center rounded-md border border-transparent bg-green-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
         >
           {submitLabel}
         </button>
