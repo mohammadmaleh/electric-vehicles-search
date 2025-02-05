@@ -42,6 +42,7 @@ const RangeInput: React.FC<RangeInputProps> = ({
   minLabel = 'Minimum',
   maxLabel = 'Maximum',
   submitLabel = 'Apply',
+  dataTestIdLabel = '',
 }) => {
   const {
     control,
@@ -70,7 +71,7 @@ const RangeInput: React.FC<RangeInputProps> = ({
               render={({ field }) => (
                 <input
                   {...field}
-                  data-testid="range-input-min"
+                  data-testid={`range-input-min-${dataTestIdLabel}`}
                   type="number"
                   min={absoluteMin}
                   max={absoluteMax}
@@ -90,7 +91,7 @@ const RangeInput: React.FC<RangeInputProps> = ({
               render={({ field }) => (
                 <input
                   {...field}
-                  data-testid="range-input-max"
+                  data-testid={`range-input-max-${dataTestIdLabel}`}
                   type="number"
                   min={absoluteMin}
                   max={absoluteMax}
@@ -108,7 +109,7 @@ const RangeInput: React.FC<RangeInputProps> = ({
         )}
 
         <button
-          data-testid="range-input-submit"
+          data-testid={`range-input-submit-${dataTestIdLabel}`}
           type="submit"
           className="w-full inline-flex justify-center rounded-md border border-transparent bg-green-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
         >

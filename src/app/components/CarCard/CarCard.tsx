@@ -51,7 +51,10 @@ const CarCard: React.FC<CarCardProps> = ({
 
       <div className="p-6 space-y-4" onClick={onCarClick}>
         <div className="flex justify-between items-start">
-          <h2 className="text-2xl font-bold text-gray-900">
+          <h2
+            className="text-2xl font-bold text-gray-900"
+            data-testid="car-name"
+          >
             {car.brand} {model}
             <span className="text-gray-500 ml-2 text-lg">({year})</span>
           </h2>
@@ -72,18 +75,25 @@ const CarCard: React.FC<CarCardProps> = ({
           <div className="space-y-2">
             <p className="flex items-center text-gray-600">
               <span className="w-24 font-medium text-gray-500">Price:</span>
-              <span className="font-bold text-green-600 text-lg">
+              <span
+                className="font-bold text-green-600 text-lg"
+                data-testid="car-price"
+              >
                 {price.toLocaleString()} €
               </span>
             </p>
             <p className="flex items-center text-gray-600">
               <span className="w-24 font-medium text-gray-500">Range:</span>
-              <span className="font-semibold">{range_km} km</span>
+              <span className="font-semibold" data-testid="car-range">
+                {range_km} km
+              </span>
             </p>
             <p className="flex items-center text-gray-600">
               <span className="w-24 font-medium text-gray-500">Location:</span>
               <MapPinIcon className="w-5 h-5 mr-1 text-red-500" />
-              <span className="truncate">{location}</span>
+              <span className="truncate" data-testid="car-location">
+                {location}
+              </span>
             </p>
           </div>
 

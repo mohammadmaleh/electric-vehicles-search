@@ -142,6 +142,7 @@ export default function Home(): ReactNode {
                 absoluteMin={filterAbsoluteMinPrice}
                 absoluteMax={filterAbsoluteMaxPrice}
                 onSubmit={onPriceRangeChange}
+                dataTestIdLabel="price"
               />
             </div>
 
@@ -155,6 +156,7 @@ export default function Home(): ReactNode {
                 absoluteMin={filterAbsoluteMinYear}
                 absoluteMax={filterAbsoluteMaxYear}
                 onSubmit={onYearRangeChange}
+                dataTestIdLabel="year"
               />
             </div>
           </div>

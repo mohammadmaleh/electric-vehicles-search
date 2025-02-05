@@ -37,7 +37,10 @@ const Pagination: React.FC<PaginationProps> = ({
       <div className="flex gap-2">{renderTotalPages()}</div>
 
       {totalItems !== null && (
-        <span className="text-xs md:text-sm text-gray-500 whitespace-nowrap">
+        <span
+          className="text-xs md:text-sm text-gray-500 whitespace-nowrap"
+          data-testid="pagination-text"
+        >
           Showing {carPageLimit} of {totalItems}
         </span>
       )}

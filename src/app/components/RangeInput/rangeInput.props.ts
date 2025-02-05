@@ -7,6 +7,7 @@ interface RangeInputProps {
   minLabel?: string;
   maxLabel?: string;
   submitLabel?: string;
+  dataTestIdLabel: string;
 }
 
 export default RangeInputProps;
