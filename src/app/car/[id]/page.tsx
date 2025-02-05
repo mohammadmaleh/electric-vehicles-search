@@ -8,6 +8,7 @@ import SearchInput from '@/app/components/SearchInput/SearchInput';
 import Header from '@/app/components/Header/Header';
 import dynamic from 'next/dynamic';
 import GreyAnimation from '@/app/components/Loading/GreyAnimation/GreyAnimation';
+import { ArrowLeftCircleIcon } from '@heroicons/react/24/solid';
 
 const CarCard = dynamic(() => import('@/app/components/CarCard/CarCard'), {
   loading: () => <GreyAnimation />,
@@ -32,6 +33,12 @@ const CarDetailsPage: React.FC = () => {
     router.push(`/?search=${search}`);
   };
 
+  const handleBackClick = (): void => {
+    if (!document.referrer) {
+      router.push('/');
+    } else router.back();
+  };
+
   return (
     <>
       <Header>
@@ -42,6 +49,13 @@ const CarDetailsPage: React.FC = () => {
           buttonText="Search Cars"
         />
       </Header>
+
+      <div className="flex flex-col max-w-4xl mx-auto bg-white my-5 p-2">
+        <ArrowLeftCircleIcon
+          className="h-10 w-10 text-green-600 cursor-pointer "
+          onClick={handleBackClick}
+        />
+      </div>
       <CarCard car={car} detailed />
     </>
   );

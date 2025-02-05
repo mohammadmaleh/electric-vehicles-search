@@ -40,7 +40,7 @@ const CarCard: React.FC<CarCardProps> = ({
     <div
       className={`group bg-white    ${
         detailed
-          ? 'flex flex-col max-w-4xl mx-auto mt-6'
+          ? 'flex flex-col max-w-4xl mx-auto'
           : 'cursor-pointer min-w-[280px] shadow-md hover:shadow-lg transition-all duration-300 h-full'
       }`}
       data-testid="car-card"
