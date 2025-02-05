@@ -1,12 +1,12 @@
 'use client';
 
 import { useGetCarsQuery } from '@/app/state-management/slices/carSlice/car.slice';
-import CarCard from '@/app/components/CarCard/CarCard';
 import { useCallback, useMemo, type ReactNode } from 'react';
 import type { Car, CarSortValue } from './types/cars.type';
 import SearchInput from '@/app/components/SearchInput/SearchInput';
 import { useRouter, useSearchParams } from 'next/navigation';
-import RangeInput from '@/app/components/RangeInput/RangeInput';
+import GreyAnimation from '@/app/components/Loading/GreyAnimation/GreyAnimation';
+
 import { carSortOptions } from './static/car.consts';
 
 import {
@@ -17,8 +17,22 @@ import {
 } from './static/car.consts';
 import Select from '@/app/components/Select/Select';
 import Pagination from '@/app/components/Pagination/Pagination';
-import Spinner from '@/app/components/Spinner/Spinner';
+import Spinner from '@/app/components/Loading/Spinner/Spinner';
 import Header from './components/Header/Header';
+import dynamic from 'next/dynamic';
+
+const RangeInput = dynamic(
+  () => import('@/app/components/RangeInput/RangeInput'),
+  {
+    loading: () => <GreyAnimation />,
+    ssr: false,
+  },
+);
+
+const CarCard = dynamic(() => import('@/app/components/CarCard/CarCard'), {
+  loading: () => <GreyAnimation />,
+  ssr: false,
+});
 
 export default function Home(): ReactNode {
   const searchParams = useSearchParams();

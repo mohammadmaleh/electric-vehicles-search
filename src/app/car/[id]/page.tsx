@@ -2,11 +2,17 @@
 
 import { useGetCarByIdQuery } from '@/app/state-management/slices/carSlice/car.slice';
 import { useParams } from 'next/navigation';
-import CarCard from '@/app/components/CarCard/CarCard';
-import Spinner from '@/app/components/Spinner/Spinner';
+import Spinner from '@/app/components/Loading/Spinner/Spinner';
 import { useRouter } from 'next/navigation';
 import SearchInput from '@/app/components/SearchInput/SearchInput';
 import Header from '@/app/components/Header/Header';
+import dynamic from 'next/dynamic';
+import GreyAnimation from '@/app/components/Loading/GreyAnimation/GreyAnimation';
+
+const CarCard = dynamic(() => import('@/app/components/CarCard/CarCard'), {
+  loading: () => <GreyAnimation />,
+  ssr: false,
+});
 
 const CarDetailsPage: React.FC = () => {
   const { id } = useParams();
