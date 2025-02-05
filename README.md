@@ -83,6 +83,6 @@ pnpm test:e2e
 - Static variables are used for consistency and maintainability.
 - Performance optimizations include lazy loading for heavy components and images, as well as useMemo and useCallback for optimizing expensive computations.
 - Security is reinforced with input sanitization to prevent SQL injection and XSS attacks.
-- The application features a modern, responsive design that is mobile-friendly.
+- The application features a modern, when you enter home page the use can directly type and search for a car and navigate the application using tab button with clear indicators of the selected inputs, the application is responsive and mobile-friendly.
 
 ## Thank you for Reviewing.
