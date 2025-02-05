@@ -2,16 +2,24 @@ import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import type RangeInputProps from './rangeInput.props';
 
 const rangeSchema = yup.object().shape({
   min: yup
     .number()
     .min(0, 'Minimum value cannot be negative')
-    .required('Minimum value is required'),
+
+    .required('Minimum value is required')
+    .transform((value, originalValue) =>
+      originalValue === '' ? undefined : value,
+    ),
   max: yup
     .number()
     .min(0, 'Maximum value cannot be negative')
     .required('Maximum value is required')
+    .transform((value, originalValue) =>
+      originalValue === '' ? undefined : value,
+    )
     .test(
       'is-greater-or-equal',
       'Maximum value must be greater than or equal to minimum',
@@ -25,18 +33,6 @@ const rangeSchema = yup.object().shape({
     ),
 });
 
-type RangeInputProps = {
-  min: number;
-  max: number;
-  absoluteMin: number;
-  absoluteMax: number;
-  onSubmit: (min: number, max: number) => void;
-  minLabel?: string;
-  maxLabel?: string;
-  submitLabel?: string;
-  className?: string;
-};
-
 const RangeInput: React.FC<RangeInputProps> = ({
   min,
   max,
@@ -47,7 +43,11 @@ const RangeInput: React.FC<RangeInputProps> = ({
   maxLabel = 'Maximum',
   submitLabel = 'Apply',
 }) => {
-  const { control, handleSubmit } = useForm({
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     defaultValues: { min, max },
     resolver: yupResolver(rangeSchema),
   });
@@ -100,6 +100,12 @@ const RangeInput: React.FC<RangeInputProps> = ({
             />
           </div>
         </div>
+        {errors.min && (
+          <p className="text-sm text-red-600 mt-1">{errors.min.message}</p>
+        )}
+        {errors.max && (
+          <p className="text-sm text-red-600 mt-1">{errors.max.message}</p>
+        )}
 
         <button
           data-testid="range-input-submit"
