@@ -114,7 +114,7 @@ const CarCard: React.FC<CarCardProps> = ({
               {accidents && (
                 <DetailItem
                   label="Accident Details"
-                  value={accident_description}
+                  value={accident_description ?? 'None'}
                 />
               )}
               <DetailItem label="Mileage" value={`${kilometer_count} km`} />

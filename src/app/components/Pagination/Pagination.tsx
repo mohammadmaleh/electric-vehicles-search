@@ -36,7 +36,7 @@ const Pagination: React.FC<PaginationProps> = ({
     <div className="flex  items-center justify-between ">
       <div className="flex gap-2">{renderTotalPages()}</div>
 
-      {totalItems && (
+      {totalItems !== null && (
         <span className="text-xs md:text-sm text-gray-500 whitespace-nowrap">
           Showing {carPageLimit} of {totalItems}
         </span>

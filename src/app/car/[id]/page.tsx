@@ -13,7 +13,9 @@ const CarDetailsPage: React.FC = () => {
 
   const router = useRouter();
 
-  const { data: car, isLoading, error } = useGetCarByIdQuery(id);
+  const carId = Array.isArray(id) ? id[0] : id;
+
+  const { data: car, isLoading, error } = useGetCarByIdQuery(carId as string);
 
   if (isLoading) return <Spinner />;
 

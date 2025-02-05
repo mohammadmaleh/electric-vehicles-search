@@ -30,7 +30,7 @@ export const carsApi = createApi({
       providesTags: ['CarList'],
       keepUnusedDataFor: 300,
     }),
-    getCarById: builder.query<Car, number>({
+    getCarById: builder.query<Car, string>({
       query: (id) => {
         return {
           url: `cars/${id}`,

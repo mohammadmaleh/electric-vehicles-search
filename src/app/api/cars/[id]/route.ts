@@ -11,8 +11,6 @@ export async function GET(
   try {
     const { id } = await params;
 
-    console.log({ id });
-
     const filePath = path.join(process.cwd(), 'src/db', 'cars.json');
 
     const fileData = await fs.readFile(filePath, 'utf8');
