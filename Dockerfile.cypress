@@ -1,20 +1,18 @@
-# Use Cypress image with Node.js
 FROM cypress/included:14.0.1
 
-# Set working directory for Cypress
+
 WORKDIR /e2e
 
-# Install pnpm and your dependencies
+
 RUN npm install -g pnpm
 
-# Copy Cypress test files into the container
 COPY ./cypress /e2e/cypress
 COPY ./package.json /e2e/package.json
 COPY ./pnpm-lock.yaml /e2e/pnpm-lock.yaml
 COPY ./cypress.config.ts /e2e/cypress.config.ts
 
-# Install dependencies in the Cypress container
+
 RUN pnpm install
 
-# Run Cypress tests when the container starts
+
 CMD ["pnpx", "cypress", "run"]

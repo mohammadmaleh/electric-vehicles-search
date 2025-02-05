@@ -20,4 +20,4 @@ services:
     environment:
       - CYPRESS_baseUrl=http://nextjs-app:3000
     profiles:
-      - e2e # This ensures Cypress only runs when explicitly specified
+      - e2e 

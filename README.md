@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Electric Vehicles Search Application
+
+A modern web application for searching and exploring electric vehicles, built with Next.js and modern web technologies.
+
+## Tech Stack
+
+### Core Dependencies
+
+- **Next.js 15** (React 19) - App Router & Server Components
+- **Redux Toolkit** - State management
+- **Tailwind CSS 3.4** - Styling with PostCSS
+- **React Hook Form + Yup** - Form management & validation
+- **Swiper 11** - Touch slider component
+- **Heroicons** - SVG icons
+
+### Testing
+
+- **Cypress 14** - Component & End-to-end testing
+
+### Tooling
+
+- **TypeScript 5**
+- **ESLint** + **Prettier**
+- **pnpm** package manager
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js v18+
+- pnpm (`npm install -g pnpm`)
+- Docker & Docker Compose (optional)
+
+### Installation
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Running the Application
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+you can use docker compose to run the application
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+docker-compose build
+docker-compose up
+```
 
-## Learn More
+I'm not a docker expert , if docker didn't run, please run it locally.
 
-To learn more about Next.js, take a look at the following resources:
+### To run Locally
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### Dev Server
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+pnpm dev
+```
 
-## Deploy on Vercel
+#### Component Tests
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+pnpm test:component
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+#### E2E Tests
+
+```bash
+pnpm test:e2e
+```
+
+## Design Decisions
+
+- Users can search for cars by name, model, and location.
+- Users can filter cars by price range and year range.
+- Users can sort cars by price and year.
+- Users can view detailed information about each car.
+- The backend API is built using Next.js API routes, providing endpoints for fetching the vehicle list and vehicle details by ID.
+- The frontend uses RTK Query to efficiently fetch and cache API responses.
+- Data is fetched via URLs with query parameters, allowing users to share search results with others.
+- The application includes reusable components such as range filters, select dropdowns, search input, car cards, pagination, carousel, header, and loading indicators, designed to be agnostic and reusable across different applications.
+- The project is strictly typed to improve development efficiency and minimize bugs.
+- Component and E2E testing are implemented for key components, with API smoke tests to ensure reliability.
+- Static variables are used for consistency and maintainability.
+- Performance optimizations include lazy loading for heavy components and images, as well as useMemo and useCallback for optimizing expensive computations.
+- Security is reinforced with input sanitization to prevent SQL injection and XSS attacks.
+- The application features a modern, responsive design that is mobile-friendly.
+
+## Thank you for Reviewing.
