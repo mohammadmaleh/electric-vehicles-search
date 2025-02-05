@@ -5,14 +5,14 @@ import type CarouselProps from './carousel.props';
 
 const Carousel: React.FC<CarouselProps> = ({ images }) => {
   return (
-    <div className="relative h-48" data-testid="carousel">
+    <div className={'relative h-full cursor-grab'} data-testid="carousel">
       <Swiper
         pagination={{
           dynamicBullets: true,
         }}
         modules={[Pagination, Navigation]}
         navigation
-        className="h-full w-full rounded-t-xl"
+        className="h-full w-full "
       >
         {images.map((image: string) => (
           <SwiperSlide key={image}>

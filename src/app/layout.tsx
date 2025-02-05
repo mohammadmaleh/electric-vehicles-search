@@ -33,7 +33,9 @@ const RootLayout = ({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <div className="min-h-screen bg-gray-50 ">
-          <StoreProvider>{children}</StoreProvider>
+          <div className="min-h-screen bg-gray-50">
+            <StoreProvider>{children}</StoreProvider>
+          </div>
         </div>
       </body>
     </html>

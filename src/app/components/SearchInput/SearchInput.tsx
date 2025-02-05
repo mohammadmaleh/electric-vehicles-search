@@ -10,7 +10,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
   buttonText = 'Search',
   autoFocus = false,
 }) => {
-  const [search, setSearch] = useState<string>(searchTerm);
+  const [search, setSearch] = useState<string>(searchTerm || '');
 
   const inputRef = useRef<HTMLInputElement>(null);
 

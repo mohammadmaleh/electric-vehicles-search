@@ -1,6 +1,6 @@
 interface SearchInputProps {
   onSearch: (query: string) => void;
-  searchTerm: string;
+  searchTerm?: string;
   placeholder?: string;
   autoFocus?: boolean;
   buttonText?: string;

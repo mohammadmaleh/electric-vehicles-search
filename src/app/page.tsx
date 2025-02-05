@@ -18,6 +18,7 @@ import {
 import Select from '@/app/components/Select/Select';
 import Pagination from '@/app/components/Pagination/Pagination';
 import Spinner from '@/app/components/Spinner/Spinner';
+import Header from './components/Header/Header';
 
 export default function Home(): ReactNode {
   const searchParams = useSearchParams();
@@ -95,22 +96,24 @@ export default function Home(): ReactNode {
     updateURL({ page: page.toString() });
   };
 
+  const handleCarClick = (id: number): void => {
+    router.push(`/car/${id}`);
+  };
+
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="bg-white shadow-sm sticky top-0 z-20">
-        <div className="max-w-7xl mx-auto px-4 py-4 sm:py-6">
-          <SearchInput
-            onSearch={handleSearch}
-            placeholder="Search for a Brand, Model or Location"
-            autoFocus
-            buttonText="Search Cars"
-            {...{ searchTerm }}
-          />
-        </div>
-      </div>
+    <>
+      <Header>
+        <SearchInput
+          onSearch={handleSearch}
+          placeholder="Search for a Brand, Model or Location"
+          autoFocus
+          buttonText="Search Cars"
+          {...{ searchTerm }}
+        />
+      </Header>
 
       <div className="max-w-7xl mx-auto px-4 py-6 flex flex-col md:flex-row gap-4 md:gap-8">
-        <div className=" w-full md:w-64 lg:w-80 shrink-0 space-y-6 bg-white p-4 md:p-6 rounded-xl shadow-sm">
+        <div className=" w-full md:w-64 lg:w-80 shrink-0 space-y-6 bg-white p-4 md:p-6  shadow-sm">
           <h2 className="text-lg md:text-xl font-semibold mb-4 text-gray-700">
             Filter By
           </h2>
@@ -156,31 +159,29 @@ export default function Home(): ReactNode {
         )}
         {cars.length > 0 && (
           <div className="flex-1 flex flex-col h-[calc(100vh-140px)] md:h-[calc(100vh-160px)]">
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4 bg-white p-4 rounded-xl shadow-sm">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4 bg-white p-4 shadow-sm">
               <div className="flex items-center gap-3">
                 <Select
                   options={carSortOptions}
                   currentSort={currentSort}
                   onChange={onSortChange}
                 />
-                <span className="text-xs md:text-sm text-gray-500 whitespace-nowrap">
-                  Showing {cars.length} of {totalItems}
-                </span>
               </div>
             </div>
 
             <div className="flex-1 overflow-y-auto pb-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 md:gap-6">
                 {cars.map((car: Car) => (
-                  <CarCard key={car.id} car={car} />
+                  <CarCard key={car.id} {...{ car, handleCarClick }} />
                 ))}
               </div>
             </div>
 
-            <div className=" mt-4 bg-white p-4 rounded-xl shadow-sm">
+            <div className=" mt-4 bg-white p-4  shadow-sm">
               <Pagination
                 currentPage={currentPage}
                 totalPages={totalPages}
+                totalItems={totalItems}
                 onPageChange={handleOnPageChange}
                 disabled={isLoading}
               />
@@ -188,6 +189,6 @@ export default function Home(): ReactNode {
           </div>
         )}
       </div>
-    </div>
+    </>
   );
 }

@@ -1,4 +1,4 @@
-import type { CarApiResponse } from '@/app/types/cars.type';
+import type { Car, CarApiResponse } from '@/app/types/cars.type';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 interface CarQueryParams {
@@ -30,7 +30,7 @@ export const carsApi = createApi({
       providesTags: ['CarList'],
       keepUnusedDataFor: 300,
     }),
-    getCarByID: builder.query<CarApiResponse, string>({
+    getCarById: builder.query<Car, number>({
       query: (id) => {
         return {
           url: `cars/${id}`,
@@ -41,4 +41,4 @@ export const carsApi = createApi({
   }),
 });
 
-export const { useGetCarsQuery } = carsApi;
+export const { useGetCarsQuery, useGetCarByIdQuery } = carsApi;

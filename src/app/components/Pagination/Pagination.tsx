@@ -1,8 +1,10 @@
+import { carPageLimit } from '@/app/static/car.consts';
 import type PaginationProps from './Pagination.props';
 
 const Pagination: React.FC<PaginationProps> = ({
   currentPage,
   totalPages,
+  totalItems,
   onPageChange,
   disabled = false,
 }) => {
@@ -30,7 +32,17 @@ const Pagination: React.FC<PaginationProps> = ({
     });
   };
 
-  return <div className="flex  items-center gap-2">{renderTotalPages()}</div>;
+  return (
+    <div className="flex  items-center justify-between ">
+      <div className="flex gap-2">{renderTotalPages()}</div>
+
+      {totalItems && (
+        <span className="text-xs md:text-sm text-gray-500 whitespace-nowrap">
+          Showing {carPageLimit} of {totalItems}
+        </span>
+      )}
+    </div>
+  );
 };
 
 export default Pagination;
